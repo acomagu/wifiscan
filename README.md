@@ -4,4 +4,11 @@
 
 Go library to scan Wi-Fi access points.
 
+```Go
+aps, _ := wifiscan.Scan()
+for _, ap := range aps {
+	fmt.Printf("BSSID: %s, Signal: %d\n", ap.BSSID, ap.Signal)
+}
+```
+
 Supporting macOS and Linux. On Linux, this may need `sudo`.
