@@ -5,7 +5,7 @@
 Go library to scan Wi-Fi access points.
 
 ```Go
-aps, _ := wifiscan.Scan()
+aps, _ := wifiscan.Scan(ctx, "wlan0")
 for _, ap := range aps {
 	fmt.Printf("BSSID: %s, Signal: %d\n", ap.BSSID, ap.Signal)
 }
