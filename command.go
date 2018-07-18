@@ -13,4 +13,5 @@ var commandContext func(context.Context, string, ...string) cmd = func(ctx conte
 type cmd interface {
 	StdoutPipe() (io.ReadCloser, error)
 	Wait() error
+	Start() error
 }

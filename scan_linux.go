@@ -27,11 +27,17 @@ func scan(ctx context.Context, ifname string) ([]*AP, error) {
 }
 
 func iw(ctx context.Context, out chan *AP, ifname string) error {
+	defer close(out)
 	cmd := commandContext(ctx, "/sbin/iw", "dev", ifname, "scan", "-u")
 
 	opp, err := cmd.StdoutPipe()
 	if err != nil {
 		return errors.Wrap(err, "could not get the stdout fd of the command to run")
+	}
+	defer opp.Close()
+
+	if err := cmd.Start(); err != nil {
+		return errors.Wrap(err, "could not start the command")
 	}
 
 	var name string
@@ -67,7 +73,6 @@ func iw(ctx context.Context, out chan *AP, ifname string) error {
 			signal = 0
 		}
 	}
-	close(out)
 
 	return cmd.Wait()
 }

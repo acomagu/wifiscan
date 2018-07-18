@@ -20,6 +20,10 @@ func (c *cmdStub) Wait() error {
 	return nil
 }
 
+func (c *cmdStub) Start() error {
+	return nil
+}
+
 func TestListAP(t *testing.T) {
 	airportout := `
      SSID BSSID             RSSI CHANNEL HT CC SECURITY (auth/unicast/group)

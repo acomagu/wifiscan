@@ -20,6 +20,10 @@ func (c *cmdStub) Wait() error {
 	return nil
 }
 
+func (c *cmdStub) Start() error {
+	return nil
+}
+
 func TestListAP(t *testing.T) {
 	airportout := `
 BSS 00:23:b1:8c:02:a1(on wlp2s0) -- associated
