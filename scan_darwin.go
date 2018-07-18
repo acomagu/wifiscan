@@ -19,6 +19,11 @@ func scan(ctx context.Context, ifname string) ([]*AP, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "could not get the FD of stdout of the command to run")
 	}
+	defer opipe.Close()
+
+	if err := cmd.Start(); err != nil {
+		return nil, errors.Wrap(err, "could not start the command")
+	}
 
 	scn := bufio.NewScanner(opipe)
 	for scn.Scan() {
