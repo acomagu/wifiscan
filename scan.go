@@ -10,7 +10,6 @@ A majority of these OS environments are supporting it.
 
 Be careful to the scanning needs `sudo` on Linux.
 */
-
 package wifiscan
 
 import "context"
